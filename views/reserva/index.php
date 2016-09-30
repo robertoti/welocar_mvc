@@ -50,13 +50,14 @@
                 <input type="hidden" value="<?php echo date('Y-m-d h:m') ?>" name="date_added" />
                 <input type="hidden" value="ativa" name="status" />
 
-
-                <input class="btn btn-success btn-lg" type="submit" />
+                <button type="submit" class="btn btn-success btn-lg">Fazer reserva</button>
+                
+                
+                
+             
+            </form>
+        
         </div>
-
-
-        </form>
-
 
     </div>
 
@@ -79,9 +80,33 @@
                 <a href="' . URL . 'reserva/delete/' . $value['reservaid'] . '"><button class="btn btn-danger">Deletar</button></a></td>';
                 echo '</tr>';
             }
+        
+            ?>   
 
-            var_dump($this->reservaList);
-            ;
+        </table>
+
+
+
+    </div>
+    <div class="container">
+        <table class="table table-bordered">
+            <?php
+            foreach ($this->carroList as $key1 => $value1) {
+                echo '<tr>';
+                echo '<td>' . $value1['car_id'] . '</td>';
+                echo '<td>' . $value1['categoria'] . '</td>';
+                echo '<td>' . $value1['disponivel'] . '</td>';
+                echo '<td>' . $value1['placa'] . '</td>';
+                echo '<td>' . $value1['km'] . '</td>';
+               
+                echo '<td>
+                <a href="' . URL . 'reserva/edit/' . $value1['car_id'] . '"><button class="btn btn-primary">Editar</button></a> 
+                <a href="' . URL . 'reserva/deleteCar/' . $value1['car_id'] . '"><button class="btn btn-danger">Deletar</button></a></td>';
+                echo '</tr>';
+            }
+                
+          
+        
             ?>   
 
         </table>
