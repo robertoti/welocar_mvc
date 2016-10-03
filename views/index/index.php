@@ -6,20 +6,28 @@
     
     <div class="container">       
         
-        <form method="post" action="<?php echo URL; ?>login">
+    <?php if(Session::get('loggedIn') == TRUE):?>
+        
+        <form method="post" action="<?php echo URL; ?>reserva">
+            
+    <?php else:?>
+            
+        <form method="post" action="<?php echo URL; ?>reserva">   
+            
+    <?php endif;?>
 
             <div class="col-md-4 text-center">
                 <img src="<?php echo URL; ?>public/images/carros/cruze.jpg" alt="">
                
-                    <button value="ouro" name="categoria" class="btn btn-warning outline btn-lg reservar" title="Sedan executivo, completo.">OURO</button>
+                <button id="bronze" value="ouro" name="categoria" class="btn btn-warning outline btn-lg reservar" title="Sedan executivo, completo.">OURO</button>
               
                
                 <ul class="list-group">
-                    <li class="list-group-item"><span class="badge">14</span>Jetta</li>
-                    <li class="list-group-item"><span class="badge">14</span>Fusion</li>
-                    <li class="list-group-item"><span class="badge">14</span>Linea</li>
-                    <li class="list-group-item"><span class="badge">14</span>Cruser</li>
-                    <li class="list-group-item"><span class="badge">14</span>Corola</li>        
+                    <li class="list-group-item">Jetta</li>
+                    <li class="list-group-item">Fusion</li>
+                    <li class="list-group-item">Linea</li>
+                    <li class="list-group-item">Cruser</li>
+                    <li class="list-group-item">Corola</li>
                 </ul>
 
             </div>
@@ -29,11 +37,11 @@
                     <button value="prata" name="categoria" class="btn btn-default outline btn-lg reservar " title="Sedan, 4 portas, ar-condicionado">PRATA</button>
               
                 <ul class="list-group">
-                    <li class="list-group-item"><span class="badge">14</span>Voyage</li>
-                    <li class="list-group-item"><span class="badge">14</span>Siena</li>
-                    <li class="list-group-item"><span class="badge">14</span>Fiesta Sedan</li>
-                    <li class="list-group-item"><span class="badge">14</span>Prisma</li>
-                    <li class="list-group-item"><span class="badge">14</span>Etios Sedan</li>
+                    <li class="list-group-item">Voyage</li>
+                    <li class="list-group-item">Siena</li>
+                    <li class="list-group-item">Fiesta Sedan</li>
+                    <li class="list-group-item">Prisma</li>
+                    <li class="list-group-item">Etios Sedan</li>
                 </ul>
 
             </div>
@@ -43,11 +51,11 @@
                     <button value="bronze"name="categoria" class="btn btn-danger outline btn-lg reservar" title="Ar-condicionado, 4 portas, manual.">BRONZE</button>
             
                 <ul class="list-group">
-                    <li class="list-group-item"><span class="badge">14</span>Gol</li>
-                    <li class="list-group-item"><span class="badge">14</span>Palio</li>
-                    <li class="list-group-item"><span class="badge">14</span>Fiesta</li>
-                    <li class="list-group-item"><span class="badge">14</span>Onix</li>
-                    <li class="list-group-item"><span class="badge">14</span>Etios</li>                    
+                    <li class="list-group-item">Gol</li>
+                    <li class="list-group-item">Palio</li>
+                    <li class="list-group-item">Fiesta</li>
+                    <li class="list-group-item">Onix</li>
+                    <li class="list-group-item">Etios</li>
                 </ul>
 
             </div>

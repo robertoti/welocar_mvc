@@ -5,69 +5,48 @@ class Reserva_Model extends Model
     public function __construct()
     {
         parent::__construct();
-        
     }
-
-    public function reservaListFunc()
-    {
-        return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, status FROM reserva;');
-    }
-       
 
     public function reservaList()
     {
-        
-        $userid = Session::get('userid');
-        
-        return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, status FROM reserva WHERE userid = :userid', array(':userid' => $userid));
+        if(Session::get('role') == 'default'):       
+            $userid = Session::get('userid');        
+            return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, status FROM reserva WHERE userid = :userid', array(':userid' => $userid));                    
+        else:          
+            return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, status FROM reserva;');            
+        endif;        
     }
        
     public function reservaSingleList($reservaid)
-    {
-        return $this->db->select('SELECT reservaid, userid, car_id, categoria, date_added, date_inicio, date_fim, status FROM reserva WHERE reservaid = :reservaid', array(':reservaid' => $reservaid));
+    {        
+        return $this->db->select('SELECT reservaid, userid, car_id, categoria, date_added, date_inicio, date_fim, status FROM reserva WHERE reservaid = :reservaid', array(':reservaid' => $reservaid));        
     }
-
-    public function carroList()
-    {
-        return $this->db->select('SELECT car_id, categoria, disponivel, placa, km FROM carro;');
-    }
-    
-    public function carroSingleList($car_id)
-    {
-        return $this->db->select('SELECT car_id, categoria, disponivel, placa, km FROM car WHERE car_id = :car_id', array(':car_id' => $car_id));
-    }
-    
-    public function dateToDB($data){
-        
-        $data = implode("-",array_reverse(explode("/",$data)));
-        
+   
+    public function dateToDB($data)
+    {       
+        $data = implode("-",array_reverse(explode("/",$data)));        
         return $data;
     }
     
-    public function selecionaCarro($categoria){
-        
-        return  $this->db->select('SELECT car_id, categoria, disponivel FROM carro WHERE categoria = :categoria');
-        
-    }
-
-        public function create($data)
-    {
+    public function create($data)
+    {                  
         $this->db->insert('reserva', array( 
-            'userid' => $_SESSION['userid'],            
+            'userid' => $_SESSION['userid'],             
             'categoria' => $data['categoria'],
             'date_added' => $data['date_added'],
             'date_inicio' => $data['date_inicio'],
             'date_fim' => $data['date_fim'],
             'status' => $data['status']             
-        )); 
-        
-                
+        ));     
+                        
     }
     
     public function editSave($data)
     {
-        $postData = array(          
-            'categoria' => $data['categoria'],           
+        $postData = array( 
+            'userid' => $_SESSION['userid'],             
+            'categoria' => $data['categoria'],
+            'date_added' => $data['date_added'],
             'date_inicio' => $data['date_inicio'],
             'date_fim' => $data['date_fim'],
             'status' => $data['status']
@@ -88,9 +67,52 @@ class Reserva_Model extends Model
 
     }
     
+    public function selecionaCarro($categoria)
+    {
+        $disponivel = 0;
+        return $this->db->select('SELECT car_id FROM carro WHERE disponivel = :disponivel AND car_id = :categoria', array(':categoria' => $categoria));
+        
+    }
+    
+    public function carroList()
+    {
+        return $this->db->select('SELECT car_id, categoria, disponivel, placa, km FROM carro;');
+    }
+    
+    public function carroSingleList($car_id)
+    {
+        return $this->db->select('SELECT car_id, categoria, disponivel, placa, km FROM carro WHERE car_id = :car_id', array(':car_id' => $car_id));
+    }
+    
+    
+
+    public function createCar($data)
+    {
+        $this->db->insert('carro', array( 
+            'categoria' => $data['categoria'],
+            'disponivel' => $data['disponivel'],
+            'placa' => $data['placa'],
+            'km' => $data['km']             
+        )); 
+        
+                
+    }
+    
+    public function editCarSave($data)
+    {
+        $postData = array(          
+            'categoria' => $data['categoria'],           
+            'disponivel' => $data['disponivel'],
+            'placa' => $data['placa'],
+            'km' => $data['km']
+        );
+        
+        $this->db->update('carro', $postData, "`car_id` = {$data['car_id']}");
+    }
+         
     public function deleteCar($car_id)
     {
-        $result = $this->db->select('SELECT disponivel FROM reserva WHERE car_id = :car_id', array(':car_id' => $car_id));
+        $result = $this->db->select('SELECT disponivel FROM carro WHERE car_id = :car_id', array(':car_id' => $car_id));
 
         if ($result[0]['status'] == '1')
         return false;
@@ -99,5 +121,6 @@ class Reserva_Model extends Model
         
         
     }
+    
     
 }

@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
         <title>Welocar</title>
         <link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css" />    
         <link rel="shortcut icon" href="<?php echo URL; ?>public/images/favicon.ico" type="image/ico" />
@@ -13,7 +14,7 @@
         <link href="<?php echo URL; ?>public/owl-carousel/owl-carousel/owl.theme.css" rel="stylesheet" type="text/css"/>        
 
         <!-- jQuery e Datepicker -  Para o funcionamento do  DataPicker da pagina de de reservas  para o carousel  -->
-        
+
         <script src="<?php echo URL; ?>public/jquery/jquery.js" type="text/javascript"></script>        
         <link href="<?php echo URL; ?>public/datepicker/css/datepicker.css" rel="stylesheet" type="text/css"/>
         <script src="<?php echo URL; ?>public/datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
@@ -62,41 +63,67 @@
                         <ul id="float-l" class="list-auto float-l">
 
 
-                            <?php Session::init(); ?>
                             <li>
                                 <a href="<?php echo URL; ?>index">Inicio</a>
                             </li>
-                            <?php if (Session::get('loggedIn') == false): ?>
 
-                                <li>
-                                    <a href="<?php echo URL; ?>help">Help</a>                               
-                                </li>
-                            <?php endif; ?>
+                            <?php Session::init(); ?>
+                            
+<!-- #########################    Estrutura de para definir os itens do menu quando o usuário está logado   ############################-->
+
 
                             <?php if (Session::get('loggedIn') == TRUE): ?>
-                                <li>                                                            
-                                    <a href="<?php echo URL; ?>dashboard">Administração</a>
-                                </li>
+
                                 <li>
                                     <a href="<?php echo URL; ?>reserva">Reservas</a>
                                 </li>
-                                <li>
-                                    <a href="<?php echo URL; ?>note">Notas</a>
-                                </li>
+    <!-- #########################     A partir daqui somente o administrador do sistema pode ver #######################################-->
+
                                 <?php if (Session::get('role') == 'owner'): ?>
+
+                                    <li>                                                            
+                                        <a href="<?php echo URL; ?>dashboard">Administração</a>
+                                    </li>
                                     <li>
                                         <a href="<?php echo URL; ?>user">Usuários</a>                                    
                                     </li>
-                                <?php endif; ?>
+                                    <li>
+                                        <a href="<?php echo URL; ?>carro">Carros</a>                                    
+                                    </li>
+                                <?php endif; ?> 
+                                    
+    <!-- #########################     termino da visualização do administrador do sistema #############################################-->
+
+
+    <!-- #########################     A partir daqui somente os funcionários do sistema podem ver #####################################-->
+
+                                    
+                                <?php if (Session::get('role') == 'admin'): ?>
+
+                                    <li>                                                            
+                                        <a href="<?php echo URL; ?>dashboard">Administração</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo URL; ?>user">Usuários</a>                                    
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo URL; ?>carro">Carros</a>                                    
+                                    </li>
+                                <?php endif; ?>                                
                                 <li>
-                                    <a href="<?php echo URL; ?>dashboard/logout">Sair</a>    
+                                    <a href="<?php echo URL; ?>admin/logout">Sair</a>    
                                 </li>
                             <?php else: ?>                              
                                 <li>
                                     <a href="<?php echo URL; ?>login">Login</a>
                                 </li>
-                            <?php endif; ?>    
+                            <?php endif; ?>  
+                                
+<!-- #########################     termino da visualização do funcionários do sistema ################################################-->                                
 
+                          
+
+<!-- #########################    Estrutura de para definir os itens do menu quando o não existe usuário logado no sistema  ############################-->
 
 
                             <?php if (Session::get('loggedIn') == false): ?>
@@ -105,14 +132,18 @@
                                 </li>
                                 <li>
                                     <a href="#contato" title="">Contato</a>                              
-                                </li>                           
+                                </li>  
+                                <li>
+                                    <a href="<?php echo URL; ?>help">Ajuda</a>                               
+                                </li>
 
                             </ul>
 
                         </nav>
 
+<!-- #########################    formulário de login do Header, visivel somente na página inicial     ############################-->
 
-                        <?php if ($_SERVER['REQUEST_URI'] != '/mvc/login'): ?>
+                                <?php if ($_SERVER['REQUEST_URI'] == '/index'): ?>
                             <div id="login" class="pull-right">
 
                                 <form class="form-inline" action="login/run" method="post">
@@ -126,13 +157,16 @@
                                         <input class="form-control"  type="password" name="password"  placeholder="Digite sua senha..." />
                                     </div>                
 
-                                    <button type="submit" class="btn btn-default">Sign in</button>
+                                    <button type="submit" class="btn btn-default">Login</button>
 
                                 </form>
 
                             </div>
-                        <?php endif; ?>
-                    <?php endif; ?>
+                                <?php endif; ?>
+
+<!-- #########################    fim do formulários de login do Header   ############################################################-->
+
+                            <?php endif; ?>
 
                 </div>
 

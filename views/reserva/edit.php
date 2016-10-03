@@ -31,7 +31,7 @@
 
                     <label class="col-sm-4 control-label">Data de retirada</label>
                     <div class="col-sm-4">
-                        <input id="retirada" value="" type="text" required class="form-control"  name="date_inicio" />
+                        <input id="retirada" value="<?php echo $this->reserva[0]['date_inicio'] =  implode("/",array_reverse(explode("-",$this->reserva[0]['date_inicio'])))?>" type="text" required class="form-control"  name="date_inicio" />
                     </div>
 
                 </div>
@@ -40,7 +40,7 @@
                     <label class="col-sm-4 control-label">Data da devolução</label>
                     <div class="col-sm-4">
 
-                        <input id="devolucao" type="text"required class="form-control"  name="date_fim" />
+                        <input id="devolucao" type="text"required  value="<?php echo $this->reserva[0]['date_fim'] =  implode("/",array_reverse(explode("-",$this->reserva[0]['date_fim'])))?>"class="form-control"  name="date_fim" />
 
 
                     </div>

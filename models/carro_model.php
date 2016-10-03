@@ -1,32 +1,21 @@
 <?php
 
-class Reserva_Model extends Model
+class Carro_Model extends Model
 {
     public function __construct()
     {
         parent::__construct();
         
     }
+ 
 
-    public function reservaListFunc()
+    public function selecionaCarro($categoria)
     {
-        return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, status FROM reserva;');
-    }
-       
-
-    public function reservaList()
-    {
+        $disponivel = 0;
+        return $this->db->select('SELECT car_id FROM carro WHERE disponivel = :disponivel AND car_id = :categoria', array(':categoria' => $categoria));
         
-        $userid = Session::get('userid');
-        
-        return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, status FROM reserva WHERE userid = :userid', array(':userid' => $userid));
     }
-       
-    public function reservaSingleList($reservaid)
-    {
-        return $this->db->select('SELECT reservaid, userid, car_id, categoria, date_added, date_inicio, date_fim, status FROM reserva WHERE reservaid = :reservaid', array(':reservaid' => $reservaid));
-    }
-
+    
     public function carroList()
     {
         return $this->db->select('SELECT car_id, categoria, disponivel, placa, km FROM carro;');
@@ -34,23 +23,12 @@ class Reserva_Model extends Model
     
     public function carroSingleList($car_id)
     {
-        return $this->db->select('SELECT car_id, categoria, disponivel, placa, km FROM car WHERE car_id = :car_id', array(':car_id' => $car_id));
+        return $this->db->select('SELECT car_id, categoria, disponivel, placa, km FROM carro WHERE car_id = :car_id', array(':car_id' => $car_id));
     }
     
-    public function dateToDB($data){
-        
-        $data = implode("-",array_reverse(explode("/",$data)));
-        
-        return $data;
-    }
     
-    public function selecionaCarro($categoria){
-        
-        return  $this->db->select('SELECT car_id, categoria, disponivel FROM carro WHERE categoria = :categoria');
-        
-    }
 
-        public function create($data)
+    public function create($data)
     {
         $this->db->insert('reserva', array( 
             'userid' => $_SESSION['userid'],            

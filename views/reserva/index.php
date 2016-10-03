@@ -1,4 +1,8 @@
 <?php Session::init() ?>
+
+<?php if (Session::get('role') == 'default'): ?>
+
+
 <section class="row">
 
     <div class="container text-center">
@@ -19,9 +23,9 @@
                     <div class="col-sm-4">
 
                         <select class="form-control"  name="categoria">
-                            <option value="ouro" >Ouro</option>
-                            <option value="prata">Prata</option>
-                            <option value="bronze">Bronze</option>
+                            <option value="ouro"  <?php if (isset($_POST['categoria']) && $_POST['categoria'] == 'ouro') echo 'selected' ?>>Ouro</option>
+                            <option value="prata" <?php if (isset($_POST['categoria']) && $_POST['categoria'] == 'prata') echo 'selected' ?>>Prata</option>
+                            <option value="bronze"<?php if (isset($_POST['categoria']) && $_POST['categoria'] == 'bronze') echo 'selected' ?>>Bronze</option>
                         </select>
 
                     </div>
@@ -51,72 +55,92 @@
                 <input type="hidden" value="ativa" name="status" />
 
                 <button type="submit" class="btn btn-success btn-lg">Fazer reserva</button>
-                
-                
-                
-             
+
+                <div class="espaco"></div>
+
             </form>
-        
+
         </div>
 
     </div>
+</section>
+
+<?php endif;?>
+
+    <section>
+
+        <div class="container text-center">
+            <h2 class="title">Reservas ativas</h2>
+            <hr id="hr-cat"/>
+        </div>
 
 
-    <hr />
+        <div class="container">
+            <table class="table table-bordered">
 
-
-    <div class="container">
-        <table class="table table-bordered">
-            <?php
-            foreach ($this->reservaList as $key => $value) {
-                echo '<tr>';
-                echo '<td>' . $value['categoria'] . '</td>';
-                echo '<td>' . $value['date_added'] . '</td>';
-                echo '<td>' . $value['date_inicio'] . '</td>';
-                echo '<td>' . $value['date_fim'] . '</td>';
-                echo '<td>' . $value['status'] . '</td>';
-                echo '<td>
+                <?php
+                ?>
+                <?php
+                foreach ($this->reservaList as $key => $value) {
+                    echo '<tr>';
+                    echo '<td>' . $value['categoria'] . '</td>';
+                    echo '<td>' . $value['date_added'] . '</td>';
+                    echo '<td>' . $value['date_inicio'] = implode("/", array_reverse(explode("-", $value['date_inicio']))) . '</td>';
+                    echo '<td>' . $value['date_fim'] = implode("/", array_reverse(explode("-", $value['date_fim']))) . '</td>';
+                    echo '<td>' . $value['status'] . '</td>';
+                    echo '<td>
                 <a href="' . URL . 'reserva/edit/' . $value['reservaid'] . '"><button class="btn btn-primary">Editar</button></a> 
                 <a href="' . URL . 'reserva/delete/' . $value['reservaid'] . '"><button class="btn btn-danger">Deletar</button></a></td>';
-                echo '</tr>';
-            }
-        
-            ?>   
+                    echo '</tr>';
+                }
+                ?>   
 
-        </table>
+            </table>
+            
+        </div>
+
+    </section>
 
 
 
-    </div>
-    <div class="container">
-        <table class="table table-bordered">
-            <?php
-            foreach ($this->carroList as $key1 => $value1) {
-                echo '<tr>';
-                echo '<td>' . $value1['car_id'] . '</td>';
-                echo '<td>' . $value1['categoria'] . '</td>';
-                echo '<td>' . $value1['disponivel'] . '</td>';
-                echo '<td>' . $value1['placa'] . '</td>';
-                echo '<td>' . $value1['km'] . '</td>';
-               
-                echo '<td>
+    <?php if (Session::get('role') != 'default'): ?>
+
+        <section>
+            
+            <div class="container text-center">
+            <h2 class="title">Veículos</h2>
+            <hr id="hr-cat"/>
+            </div>
+
+            <div class="container">
+                <table class="table table-bordered">
+                    <?php
+                    foreach ($this->carroList as $key1 => $value1) {
+                        echo '<tr>';
+                        echo '<td>' . $value1['car_id'] . '</td>';
+                        echo '<td>' . $value1['categoria'] . '</td>';
+                        echo '<td>' . $value1['disponivel'] . '</td>';
+                        echo '<td>' . $value1['placa'] . '</td>';
+                        echo '<td>' . $value1['km'] . '</td>';
+
+                        echo '<td>
                 <a href="' . URL . 'reserva/edit/' . $value1['car_id'] . '"><button class="btn btn-primary">Editar</button></a> 
                 <a href="' . URL . 'reserva/deleteCar/' . $value1['car_id'] . '"><button class="btn btn-danger">Deletar</button></a></td>';
-                echo '</tr>';
-            }
-                
-          
-        
-            ?>   
+                        echo '</tr>';
+                    }
+                    ?>   
 
-        </table>
+                </table>
 
+            </div>
 
-
-    </div>
+        </section>
 
 
-</section>
+
+    <?php endif; ?>
+
+
 <script>
 
     var nowTemp = new Date();
@@ -146,5 +170,5 @@
     }).on('changeDate', function (ev) {
         checkout.hide();
     }).data('datepicker');
-    
+
 </script>
