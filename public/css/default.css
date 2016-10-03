@@ -300,7 +300,10 @@ div.espaco {
     color: #f0ad4e;
 }
 .btn-danger.outline {
-    color: #d9534f;
+    color: #D09375;
+}
+#content > section.row > div:nth-child(2) > form > div:nth-child(3) > button:hover{
+    background-color: #D09375!important;
 }
 .btn-primary.outline:hover,
 .btn-success.outline:hover,
@@ -317,6 +320,7 @@ button.reservar {
     margin-top: 15px;
     text-shadow: 2px 2px 2px #000;
     margin-bottom: 15px; 
+    width: 100%;
 }
 h2.title{
     margin-top: -60px;
