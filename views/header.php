@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css" />    
         <link rel="shortcut icon" href="<?php echo URL; ?>public/images/favicon.ico" type="image/ico" />
         <link href="<?php echo URL; ?>public/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-
+        <meta charset="UTF-8">
         <link href="<?php echo URL; ?>public/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="<?php echo URL; ?>public/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="<?php echo URL; ?>public/jquery-modal/jquery.modal.css" rel="stylesheet" type="text/css"/>
@@ -64,7 +64,7 @@
 
 
                             <li>
-                                <a href="<?php echo URL; ?>index">Inicio</a>
+                                <a href="<?php echo URL; ?>">Inicio</a>
                             </li>
 
                             <?php Session::init(); ?>
@@ -143,7 +143,7 @@
 
 <!-- #########################    formulário de login do Header, visivel somente na página inicial     ############################-->
 
-                                <?php if ($_SERVER['REQUEST_URI'] == '/index'): ?>
+                                <?php if (($_SERVER['REQUEST_URI'] == '/index') OR ($_SERVER['REQUEST_URI'] == '/')): ?>
                             <div id="login" class="pull-right">
 
                                 <form class="form-inline" action="login/run" method="post">

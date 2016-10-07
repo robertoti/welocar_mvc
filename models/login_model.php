@@ -26,7 +26,7 @@ class Login_Model extends Model
             Session::set('role', $data['role']);
             Session::set('loggedIn', true);
             Session::set('userid', $data['userid']);
-            Session::get('role') == 'default'? header('location: ../index'):header('location: ../reserva');;
+            Session::get('role') == 'default'? header('location: ../reserva'):header('location: ../reserva');;
             
         } else {
            

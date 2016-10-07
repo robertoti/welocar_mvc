@@ -31,21 +31,19 @@
                                 <input class="form-control"  type="password" name="password" placeholder="Digite sua senha" />
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-5 col-sm-2"> 
-
-                                <input class="form-control btn btn-success" type="submit" value="Enviar" />
+                        <div class="form-group"> 
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-2">
+                                <input class="form-control btn btn-success" type="submit" value="Enviar" />                                
                             </div>
+                            <div class="col-sm-2"> 
+                                <a class=" form-control btn btn-info" href="<?php echo URL ?>cadastro" title="">Cadastre-se</a>                                      
+                            </div>
+
                         </div>
 
                         </form>
-                        <div class="form-group">
-                            <div class="col-sm-offset-5 col-sm-2"> 
-                                <a href="<?php echo URL ?>user/newuser" title="">
-                                    <button class=" form-control btn btn-info" value="Enviar">Cadastre-se</button>
-                                </a>                                            
-                            </div>
-                        </div>
+
 
 
 
