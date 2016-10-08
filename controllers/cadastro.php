@@ -7,7 +7,8 @@ class Cadastro extends Controller {
     }
     
     public function index() 
-    {          
+    {   
+        $this->view->title = 'Cadastro | Welocar';
         $this->view->render('cadastro/index');
     }
     

@@ -18,7 +18,7 @@ class Carro_Model extends Model
     
     public function carroList()
     {
-        return $this->db->select('SELECT car_id, categoria, disponivel, placa, km FROM carro;');
+        return $this->db->select('SELECT car_id, categoria, disponivel, placa, km FROM carro ORDER BY car_id;');
     }
     
     public function carroSingleList($car_id)
@@ -30,13 +30,11 @@ class Carro_Model extends Model
 
     public function create($data)
     {
-        $this->db->insert('reserva', array( 
-            'userid' => $_SESSION['userid'],            
-            'categoria' => $data['categoria'],
-            'date_added' => $data['date_added'],
-            'date_inicio' => $data['date_inicio'],
-            'date_fim' => $data['date_fim'],
-            'status' => $data['status']             
+        $this->db->insert('carro', array(             
+            'categoria' => $data['categoria'],  
+            'disponivel' => $data['disponivel'],  
+            'placa' => $data['placa'],
+            'km' => $data['km']                
         )); 
         
                 
@@ -44,38 +42,24 @@ class Carro_Model extends Model
     
     public function editSave($data)
     {
-        $postData = array(          
-            'categoria' => $data['categoria'],           
-            'date_inicio' => $data['date_inicio'],
-            'date_fim' => $data['date_fim'],
-            'status' => $data['status']
+        $postData = array(
+            'categoria' => $data['categoria'],  
+            'placa' => $data['placa'],
+            'km' => $data['km']   
         );
         
-        $this->db->update('reserva', $postData, "`reservaid` = {$data['reservaid']}");
+        $this->db->update('carro', $postData, "`car_id` = {$data['car_id']}");
     }
     
-    public function delete($reservaid)
-    {
-        $result = $this->db->select('SELECT status FROM reserva WHERE reservaid = :reservaid', array(':reservaid' => $reservaid));
+    public function delete($car_id)
+    {                
+       $result = $this->db->select('SELECT disponivel FROM carro WHERE car_id = :car_id', array(':car_id' => $car_id));
 
-        if ($result[0]['status'] == 'ativo')
-        return false;
+        if ($result[0]['disponivel'] == 0)
+        return false;    
         
-        $this->db->delete('reserva', "reservaid = '$reservaid'");
-        
-
+        $this->db->delete('carro', "car_id = '$car_id'"); 
     }
-    
-    public function deleteCar($car_id)
-    {
-        $result = $this->db->select('SELECT disponivel FROM reserva WHERE car_id = :car_id', array(':car_id' => $car_id));
-
-        if ($result[0]['status'] == '1')
-        return false;
-        
-        $this->db->delete('carro', "car_id = '$car_id'");
-        
-        
-    }
+     
     
 }

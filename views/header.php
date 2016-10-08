@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, user-scalable=no">
-        <title>Welocar</title>
+        <title><?=(isset($this->title)) ? $this->title : 'Welocar - Aluguel de veículos';?></title>
         <link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css" />    
         <link rel="shortcut icon" href="<?php echo URL; ?>public/images/favicon.ico" type="image/ico" />
         <link href="<?php echo URL; ?>public/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>

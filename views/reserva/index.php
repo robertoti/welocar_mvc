@@ -124,8 +124,8 @@
                         echo '<td>' . $value1['km'] . '</td>';
 
                         echo '<td>
-                <a href="' . URL . 'reserva/edit/' . $value1['car_id'] . '"><button class="btn btn-primary">Editar</button></a> 
-                <a href="' . URL . 'reserva/deleteCar/' . $value1['car_id'] . '"><button class="btn btn-danger">Deletar</button></a></td>';
+                <a href="' . URL . 'carro/edit/' . $value1['car_id'] . '"><button class="btn btn-primary">Editar</button></a> 
+                <a href="' . URL . 'carro/delete/' . $value1['car_id'] . '"><button class="btn btn-danger">Deletar</button></a></td>';
                         echo '</tr>';
                     }
                     ?>   

@@ -7,7 +7,8 @@ class Login extends Controller {
     }
     
     function index() 
-    {    
+    {   
+        $this->view->title = 'Login | Welocar';
         $this->view->render('login/index');
     }
     
