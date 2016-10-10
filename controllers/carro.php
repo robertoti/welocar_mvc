@@ -1,17 +1,17 @@
 <?php
 
-class Reserva extends Controller {
+class Carro extends Controller {
 
     public function __construct() {
         parent::__construct();
         Auth::handleLogin();
+        
     }
     
     public function index() 
-    {    
-        $this->view->reservaList = $this->model->reservaList();
+    {           
         $this->view->carroList = $this->model->carroList();
-        $this->view->render('reserva/index');
+        $this->view->render('carro/index');
     }
     
      public function selecionaCarro(){
@@ -21,56 +21,46 @@ class Reserva extends Controller {
     public function create() 
     {
         $data = array();
-        $data['userid'] = $_SESSION['userid'];
         $data['categoria'] = $_POST['categoria'];
-        $data['date_added'] = $_POST['date_added'];
-        $data['date_inicio'] = $this->model->dateToDB($_POST['date_inicio']);
-        $data['date_fim'] = $this->model->dateToDB($_POST['date_fim']);
-        $data['status'] = $_POST['status'];  
-               
+        $data['disponivel'] = 1;
+        $data['placa'] = $_POST['placa'];
+        $data['km'] = $_POST['km'];     
         
-        // @TODO: Do your error checking!
         
+        // @TODO: Do your error checking!        
         $this->model->create($data);
-        header('location: ' . URL . 'reserva');
+        header('location: ' . URL . 'carro');
         
     }
     
-    public function edit($reservaid) 
+    public function edit($car_id) 
     {
-        $this->view->reserva = $this->model->reservaSingleList($reservaid);
+        $this->view->carro = $this->model->carroSingleList($car_id);
         
-        $this->view->render('reserva/edit');
+        $this->view->render('carro/edit');
     }
     
     public function editSave($id)
     {
         $data = array();        
-        $data['reservaid'] = $_SESSION['reservaid'];
-        $data['userid'] = $_SESSION['userid'];
+        $data['car_id'] = $id;       
         $data['categoria'] = $_POST['categoria'];
-        $data['date_added'] = $_POST['date_added'];
-        $data['date_inicio'] = $_POST['date_inicio'];
-        $data['date_fim'] = $_POST['date_fim'];
-        $data['status'] = $_POST['status'];  
-        $data['disponivel'] = 0;
+        $data['placa'] = $_POST['placa'];
+        $data['km'] = $_POST['km'];        
+        
         
         
         // @TODO: Do your error checking!
         
         $this->model->editSave($data);
-        header('location: ' . URL . 'reserva');
+        header('location: ' . URL . 'carro');
     }
     
     public function delete($id)
     {
         $this->model->delete($id);
-        header('location: ' . URL . 'reserva');
+        header('location: ' . URL . 'carro');
     }
     
-    public function deleteCar($id)
-    {
-        $this->model->deleteCar($id);
-        header('location: ' . URL . 'reserva');
-    }
+   
 }

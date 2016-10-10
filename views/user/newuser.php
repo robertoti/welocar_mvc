@@ -17,9 +17,9 @@
                     </div>                    
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Password</label>
+                    <label class="col-sm-4 control-label">Senha</label>
                     <div class="col-sm-4">
-                        <input class="form-control" type="text" name="password" />
+                        <input class="form-control" type="password" name="password" />
                     </div>                        
                 </div>
                 <div class="form-group">
@@ -33,7 +33,7 @@
                         </div>
                 </div>
                     
-                <input class="btn btn-success btn-lg" type="submit" />
+                <button  class="btn btn-success btn-lg" type="submit" > Fazer cadastro</button>
                 </div>
                     
                     
@@ -42,10 +42,8 @@
             
         </div>
 
-        
+        <?php if (Session::get('hole' == 'owner')):?>
         <hr />
-
-
         <div class="container">
             <table class="table table-bordered">
                 <?php
@@ -64,8 +62,7 @@
           
 
         </div>
-
-</div>
+        <?php endif;?>
 
 </section>
 

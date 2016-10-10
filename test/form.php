@@ -10,7 +10,10 @@ if (isset($_REQUEST['run'])) {
         $form = new Form();
 
         $form    ->post('name')
-                ->val('minlength', 2)
+                ->val('minlength', 5)
+                
+                ->post('sobrenome')
+                ->val('minlength', 5)
 
                 ->post('age')
                 ->val('minlength', 2)
@@ -38,6 +41,7 @@ if (isset($_REQUEST['run'])) {
 
 <form method="post" action="?run">
     Name <input type="text" name="name" />
+    Sobrenome <input type="text" name="sobrenome" />
     Age <input type="text" name="age" />
     Gender <select name="gender">
         <option value="m">Male</option>

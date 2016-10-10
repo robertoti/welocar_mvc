@@ -15,5 +15,5 @@ class Auth
             exit;
         }
     }
-    
+       
 }
