@@ -84,6 +84,7 @@
                 foreach ($this->reservaList as $key => $value) {
                     echo '<tr>';
                     echo '<td>' . $value['categoria'] . '</td>';
+                    echo '<td>' . $value['userid'] . '</td>';
                     echo '<td>' . $value['date_added'] . '</td>';
                     echo '<td>' . $value['date_inicio'] = implode("/", array_reverse(explode("-", $value['date_inicio']))) . '</td>';
                     echo '<td>' . $value['date_fim'] = implode("/", array_reverse(explode("-", $value['date_fim']))) . '</td>';
@@ -93,6 +94,8 @@
                 <a href="' . URL . 'reserva/delete/' . $value['reservaid'] . '"><button class="btn btn-danger">Deletar</button></a></td>';
                     echo '</tr>';
                 }
+                
+                var_dump($this->reservaList)
                 ?>   
 
             </table>
