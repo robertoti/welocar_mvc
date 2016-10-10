@@ -11,9 +11,9 @@ class Reserva_Model extends Model
     {
         if(Session::get('role') == 'default'):       
             $userid = Session::get('userid');        
-            return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, status FROM reserva WHERE userid = :userid', array(':userid' => $userid));                    
+            return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, status FROM reserva WHERE userid = :userid ORDER BY date_inicio', array(':userid' => $userid));                    
         else:          
-            return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, status FROM reserva;');            
+            return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, status FROM reserva ORDER BY date_inicio;');            
         endif;        
     }
        
