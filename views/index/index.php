@@ -19,7 +19,7 @@
             <div class="col-md-4 text-center">
                 <img src="<?php echo URL; ?>public/images/carros/cruze.jpg" alt="">
                
-                <button id="bronze" value="ouro" name="categoria" class="btn btn-warning outline btn-lg reservar" title="Sedan executivo, completo.">OURO</button>
+                <button id="bronze" value="ouro" name="categoria" class="btn btn-warning outline btn-lg reservar hvr-float-shadow" title="Sedan executivo, completo.">OURO</button>
               
                
                 <ul class="list-group">
@@ -34,7 +34,7 @@
             <div class="col-md-4 text-center">
                 <img src="<?php echo URL; ?>public/images/carros/voyage.jpg" alt="">
              
-                    <button value="prata" name="categoria" class="btn btn-default outline btn-lg reservar " title="Sedan, 4 portas, ar-condicionado">PRATA</button>
+                    <button value="prata" name="categoria" class="btn btn-default outline btn-lg reservar hvr-float-shadow " title="Sedan, 4 portas, ar-condicionado">PRATA</button>
               
                 <ul class="list-group">
                     <li class="list-group-item">Voyage</li>
@@ -48,7 +48,7 @@
             <div class="col-md-4 text-center">
                 <img src="<?php echo URL; ?>public/images/carros/gol.jpg" alt="">
               
-                    <button value="bronze"name="categoria" class="btn btn-danger outline btn-lg reservar" title="Ar-condicionado, 4 portas, manual.">BRONZE</button>
+                    <button value="bronze"name="categoria" class="btn btn-danger outline btn-lg reservar hvr-float-shadow" title="Ar-condicionado, 4 portas, manual.">BRONZE</button>
             
                 <ul class="list-group">
                     <li class="list-group-item">Gol</li>

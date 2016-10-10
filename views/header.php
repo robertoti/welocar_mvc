@@ -2,11 +2,12 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, user-scalable=no">
+        <meta charset="UTF-8">
         <title><?=(isset($this->title)) ? $this->title : 'Welocar - Aluguel de veículos';?></title>
         <link rel="stylesheet" href="<?php echo URL; ?>public/css/default.css" />    
+        <link rel="stylesheet" href="<?php echo URL; ?>/public/hover/hover-min.css" />
         <link rel="shortcut icon" href="<?php echo URL; ?>public/images/favicon.ico" type="image/ico" />
         <link href="<?php echo URL; ?>public/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-        <meta charset="UTF-8">
         <link href="<?php echo URL; ?>public/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="<?php echo URL; ?>public/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <link href="<?php echo URL; ?>public/jquery-modal/jquery.modal.css" rel="stylesheet" type="text/css"/>
@@ -64,7 +65,7 @@
 
 
                             <li>
-                                <a href="<?php echo URL; ?>">Inicio</a>
+                                <a class="hvr-overline-from-center" href="<?php echo URL; ?>">Inicio</a>
                             </li>
 
                             <?php Session::init(); ?>
@@ -75,20 +76,20 @@
                             <?php if (Session::get('loggedIn') == TRUE): ?>
 
                                 <li>
-                                    <a href="<?php echo URL; ?>reserva">Reservas</a>
+                                    <a class="hvr-overline-from-center" href="<?php echo URL; ?>reserva">Reservas</a>
                                 </li>
     <!-- #########################     A partir daqui somente o administrador do sistema pode ver #######################################-->
 
                                 <?php if (Session::get('role') == 'owner'): ?>
 
                                     <li>                                                            
-                                        <a href="<?php echo URL; ?>dashboard">Administração</a>
+                                        <a  class="hvr-overline-from-center" href="<?php echo URL; ?>dashboard">Administração</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo URL; ?>user">Usuários</a>                                    
+                                        <a class="hvr-overline-from-center" href="<?php echo URL; ?>user">Usuários</a>                                    
                                     </li>
                                     <li>
-                                        <a href="<?php echo URL; ?>carro">Carros</a>                                    
+                                        <a class="hvr-overline-from-center" href="<?php echo URL; ?>carro">Carros</a>                                    
                                     </li>
                                 <?php endif; ?> 
                                     
@@ -101,21 +102,21 @@
                                 <?php if (Session::get('role') == 'admin'): ?>
 
                                     <li>                                                            
-                                        <a href="<?php echo URL; ?>dashboard">Administração</a>
+                                        <a class="hvr-overline-from-center" href="<?php echo URL; ?>dashboard">Administração</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo URL; ?>user">Usuários</a>                                    
+                                        <a class="hvr-overline-from-center" href="<?php echo URL; ?>user">Usuários</a>                                    
                                     </li>
                                     <li>
-                                        <a href="<?php echo URL; ?>carro">Carros</a>                                    
+                                        <a class="hvr-overline-from-center" href="<?php echo URL; ?>carro">Carros</a>                                    
                                     </li>
                                 <?php endif; ?>                                
                                 <li>
-                                    <a href="<?php echo URL; ?>admin/logout">Sair</a>    
+                                    <a class="hvr-overline-from-center" href="<?php echo URL; ?>admin/logout">Sair</a>    
                                 </li>
                             <?php else: ?>                              
                                 <li>
-                                    <a href="<?php echo URL; ?>login">Login</a>
+                                    <a  class="hvr-overline-from-center" href="<?php echo URL; ?>login">Login</a>
                                 </li>
                             <?php endif; ?>  
                                 
@@ -128,13 +129,13 @@
 
                             <?php if (Session::get('loggedIn') == false): ?>
                                 <li>
-                                    <a href="<?php echo URL ?>#nossos-veiculos" title="">Nossos veículos</a>  
+                                    <a class="hvr-overline-from-center" href="<?php echo URL ?>#nossos-veiculos" title="">Nossos veículos</a>  
                                 </li>
                                 <li>
-                                    <a href="#contato" title="">Contato</a>                              
+                                    <a class="hvr-overline-from-center" href="#contato" title="">Contato</a>                              
                                 </li>  
                                 <li>
-                                    <a href="<?php echo URL; ?>help">Ajuda</a>                               
+                                    <a class="hvr-overline-from-center" href="<?php echo URL; ?>help">Ajuda</a>                               
                                 </li>
 
                             </ul>
