@@ -27,6 +27,11 @@ class Reserva_Model extends Model
         $data = implode("-",array_reverse(explode("/",$data)));        
         return $data;
     }
+    public function dateToView($data)
+    {   
+        $data = implode("/",array_reverse(explode("-",$data)));               
+        return $data;
+    }
     
     public function create($data)
     {                  
@@ -43,13 +48,11 @@ class Reserva_Model extends Model
     
     public function editSave($data)
     {
-        $postData = array( 
-            'userid' => $_SESSION['userid'],             
-            'categoria' => $data['categoria'],
-            'date_added' => $data['date_added'],
+        $postData = array(                       
+            'reservaid' => $data['reservaid'],            
+            'categoria' => $data['categoria'],            
             'date_inicio' => $data['date_inicio'],
-            'date_fim' => $data['date_fim'],
-            'status' => $data['status']
+            'date_fim' => $data['date_fim'],            
         );
         
         $this->db->update('reserva', $postData, "`reservaid` = {$data['reservaid']}");

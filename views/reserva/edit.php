@@ -45,10 +45,7 @@
 
                     </div>
 
-                </div>
-
-                <input type="hidden" value="<?php echo date('Y-m-d h:m') ?>" name="date_added" />
-                <input type="hidden" value="ativa" name="status" />
+                </div>              
 
                 <button type="submit" class="btn btn-success btn-lg">Alterar reserva</button>
                 
