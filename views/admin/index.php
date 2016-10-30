@@ -1,3 +1,6 @@
+Admin_Model... Somente logado..
+
+<br />
 
 <form id="randomInsert" action="<?php echo URL;?>admin/xhrInsert/" method="post">
     <input type="text" name="text" />

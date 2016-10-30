@@ -53,12 +53,8 @@ class Carro_Model extends Model
     
     public function delete($car_id)
     {                
-       $result = $this->db->select('SELECT disponivel FROM carro WHERE car_id = :car_id', array(':car_id' => $car_id));
-
-        if ($result[0]['disponivel'] == 0)
-        return false;    
-        
-        $this->db->delete('carro', "car_id = '$car_id'"); 
+       $result = $this->db->select('SELECT disponivel FROM carro WHERE car_id = :car_id', array(':car_id' => $car_id));  
+       $this->db->delete('carro', "car_id = '$car_id'"); 
     }
      
     

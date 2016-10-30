@@ -34,15 +34,16 @@
                 </div>
                     
                 <button  class="btn btn-success btn-lg" type="submit" > Fazer cadastro</button>
-                </div>
-                    
-                    
-        </form>
+            
+            </form>
+        
+        </div>                               
+        
 
             
         </div>
 
-        <?php if (Session::get('hole' == 'owner')):?>
+        <?php if (!Session::get('hole' == 'default')):?>
         <hr />
         <div class="container">
             <table class="table table-bordered">

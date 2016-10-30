@@ -7,7 +7,7 @@ class Bootstrap {
     
     private $_controllerPath = 'controllers/'; // Always include trailing slash
     private $_modelPath = 'models/'; // Always include trailing slash
-    private $_errorFile = 'error.php';
+    private $_errorFile = 'erro.php';
     private $_defaultFile = 'index.php';
     
     /**
@@ -102,13 +102,13 @@ class Bootstrap {
             $this->_controller = new $this->_url[0];
             $this->_controller->loadModel($this->_url[0], $this->_modelPath);
         } else {
-            $this->_error();
+            $this->_erro();
             return false;
         }
     }
     
     /**
-     * If a method is passed in the GET url paremter
+     * If a method is passerd in the GET url paremter
      * 
      *  http://localhost/controller/method/(param)/(param)/(param)
      *  url[0] = Controller
@@ -124,7 +124,7 @@ class Bootstrap {
         // Make sure the method we are calling exists
         if ($length > 1) {
             if (!method_exists($this->_controller, $this->_url[1])) {
-                $this->_error();
+                $this->_erro();
             }
         }
         
@@ -161,9 +161,9 @@ class Bootstrap {
      * 
      * @return boolean
      */
-    private function _error() {
+    private function _erro() {
         require $this->_controllerPath . $this->_errorFile;
-        $this->_controller = new Error();
+        $this->_controller = new Erro();
         $this->_controller->index();
         exit;
     }

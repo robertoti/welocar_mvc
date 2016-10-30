@@ -18,10 +18,6 @@ class Cadastro extends Controller {
         $data['login'] = $_POST['login'];
         $data['password'] = $_POST['password'];
        
-        
-        // @TODO: Do your error checking!      
-       
-        
         $this->model->create($data);
         header('location: ' . URL . 'cadastro');
     }

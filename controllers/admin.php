@@ -10,17 +10,14 @@ class Admin extends Controller {
     
     function index() 
     {    
-        $this->view->title = 'Admin';
-        
-        $this->view->render('header');
+        $this->view->title = 'Admin';        
         $this->view->render('admin/index');
-        $this->view->render('footer');
     }
     
     function logout()
     {
         Session::destroy();
-        header('location: ' . URL .index);
+        header('location: ' . URL .  'login');
         exit;
     }
     

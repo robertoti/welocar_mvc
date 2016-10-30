@@ -67,7 +67,7 @@
                 echo '<td>' . $value['km'] . '</td>';
                 echo '<td>
                 <a href="' . URL . 'carro/edit/' . $value['car_id'] . '"><button class="btn btn-primary">Editar</button></a> 
-                <a href="' . URL . 'carro/delete/' . $value['car_id'] . '"><button class="btn btn-danger">Deletar</button></a></td>';
+                <a href="' . URL . 'carro/delete/' . $value['car_id'] . '"><button class="delete btn btn-danger">Deletar</button></a></td>';
                 echo '</tr>';
             }
             ?>            
@@ -76,8 +76,19 @@
 
     </div>
 
-</div>
-
 </section>
 
+<script>
+
+    $(function() {
+
+        $('.delete').click(function(e) {
+            var c = confirm("Tem certeza que deseja deletar?");
+            if (c == false) return false;
+
+        });
+
+    });
+
+</script>
 

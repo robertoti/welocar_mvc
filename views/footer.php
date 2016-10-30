@@ -44,6 +44,9 @@
 <script src="<?php echo URL; ?>public/owl-carousel/assets/js/bootstrap-tab.js" type="text/javascript"></script>
 <script src="<?php echo URL; ?>public/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo URL; ?>public/js/custom.js" type="text/javascript"></script>
-<script src="<?php echo URL; ?>views/dashboard/js/default.js" type="text/javascript"></script>
+<script src="<?php echo URL; ?>views/admin/js/default.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+<script src="<?php echo URL; ?>public/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js" type="text/javascript"></script>
 </body>
 </html>

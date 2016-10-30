@@ -19,6 +19,8 @@
         <script src="<?php echo URL; ?>public/jquery/jquery.js" type="text/javascript"></script>        
         <link href="<?php echo URL; ?>public/datepicker/css/datepicker.css" rel="stylesheet" type="text/css"/>
         <script src="<?php echo URL; ?>public/datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+        <link href="<?php echo URL; ?>public/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" type="text/css"/>
+        
         <script>
             $(function () {
                 $("#datepicker").datepicker();
@@ -83,7 +85,7 @@
                                 <?php if (Session::get('role') == 'owner'): ?>
 
                                     <li>                                                            
-                                        <a  class="hvr-overline-from-center" href="<?php echo URL; ?>dashboard">Administração</a>
+                                        <a  class="hvr-overline-from-center" href="<?php echo URL; ?>admin">Administração</a>
                                     </li>
                                     <li>
                                         <a class="hvr-overline-from-center" href="<?php echo URL; ?>user">Usuários</a>                                    
@@ -102,7 +104,7 @@
                                 <?php if (Session::get('role') == 'admin'): ?>
 
                                     <li>                                                            
-                                        <a class="hvr-overline-from-center" href="<?php echo URL; ?>dashboard">Administração</a>
+                                        <a class="hvr-overline-from-center" href="<?php echo URL; ?>admin">Administração</a>
                                     </li>
                                     <li>
                                         <a class="hvr-overline-from-center" href="<?php echo URL; ?>user">Usuários</a>                                    
