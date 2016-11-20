@@ -15,5 +15,12 @@ class Auth
             exit;
         }
     }
+    public static function handleOwner()
+    {        
+        if ($_SESSION['role'] != 'owner') {            
+            header('location: ../');
+            exit;
+        }
+    }
        
 }

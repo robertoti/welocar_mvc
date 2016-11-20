@@ -47,22 +47,21 @@
     <hr />
 
 
-    <div class="container">
+    <div class="container table-overflow">
         <table class="table table-bordered">
             <?php
             echo '<tr>';
             echo '<th>ID</th>';
             echo '<th>Categoria</th>';
-            echo '<th>Diponivel</th>';
             echo '<th>Placa</th>';
             echo '<th>Odômetro</th>';
+            echo '<th>Opções</th>';
             echo '</tr>';
             foreach ($this->carroList as $key => $value) {
 
                 echo '<tr>';
                 echo '<td>' . $value['car_id'] . '</td>';
                 echo '<td>' . $value['categoria'] . '</td>';
-                echo '<td>' . $value['disponivel'] . '</td>';
                 echo '<td>' . $value['placa'] . '</td>';
                 echo '<td>' . $value['km'] . '</td>';
                 echo '<td>

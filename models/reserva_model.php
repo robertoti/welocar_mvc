@@ -9,13 +9,24 @@ class Reserva_Model extends Model {
     public function reservaList() {
         if (Session::get('role') == 'default'):
             $userid = Session::get('userid');
-            return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, hora_inicio, status FROM reserva WHERE userid = :userid ORDER BY date_inicio', array(':userid' => $userid));
+            return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, hora_inicio, status FROM reserva WHERE userid = :userid ORDER BY date_inicio DESC', array(':userid' => $userid));
         else:
-            return $this->db->select('SELECT reservaid, userid, car_id,categoria,date_added, date_inicio, date_fim, hora_inicio, status FROM reserva ORDER BY date_inicio;');
+            return $this->db->select('SELECT reservaid, reserva.userid, car_id,categoria,date_added, date_inicio, date_fim, hora_inicio, status, login FROM reserva INNER JOIN user ON reserva.userid=user.userid ORDER BY date_inicio DESC;');
         endif;
     }
+    
+    public function updateStatus()
+    {
+        $data = $this->db->select('SELECT reservaid FROM reserva WHERE date_inicio < NOW();');        
+        $postData = array(
+            'status' => 'expirada'
+        );        
+        foreach ($data as $value) {
+            $this->db->update('reserva', $postData, "`reservaid` = {$value['reservaid']}");            
+        }        
+    }
 
-    public function reservaSingleList($reservaid) {
+    public function reservaSingleList($reservaid) {        
         return $this->db->select('SELECT reservaid, userid, car_id, categoria, date_added, date_inicio, date_fim, hora_inicio, status FROM reserva WHERE reservaid = :reservaid', array(':reservaid' => $reservaid));
     }
 
@@ -23,12 +34,6 @@ class Reserva_Model extends Model {
         $data = implode("-", array_reverse(explode("/", $data)));
         return $data;
     }
-
-    public function dateTimeToDB($data) {
-//        $data = implode("-",array_reverse(explode("/",$data)));        
-//        return $data;
-    }
-
 
     public function create($data) {
         $this->db->insert('reserva', array(

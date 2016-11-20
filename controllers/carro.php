@@ -22,12 +22,9 @@ class Carro extends Controller {
     {
         $data = array();
         $data['categoria'] = $_POST['categoria'];
-        $data['disponivel'] = 1;
         $data['placa'] = $_POST['placa'];
-        $data['km'] = $_POST['km'];     
+        $data['km'] = $_POST['km']; 
         
-        
-        // @TODO: Do your error checking!        
         $this->model->create($data);
         header('location: ' . URL . 'carro');
         

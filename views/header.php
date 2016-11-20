@@ -84,9 +84,9 @@
 
                                 <?php if (Session::get('role') == 'owner'): ?>
 
-                                    <li>                                                            
+<!--                                    <li>                                                            
                                         <a  class="hvr-overline-from-center" href="<?php echo URL; ?>admin">Administração</a>
-                                    </li>
+                                    </li>-->
                                     <li>
                                         <a class="hvr-overline-from-center" href="<?php echo URL; ?>user">Usuários</a>                                    
                                     </li>
@@ -103,12 +103,12 @@
                                     
                                 <?php if (Session::get('role') == 'admin'): ?>
 
-                                    <li>                                                            
+<!--                                    <li>                                                            
                                         <a class="hvr-overline-from-center" href="<?php echo URL; ?>admin">Administração</a>
-                                    </li>
-                                    <li>
+                                    </li>-->
+<!--                                    <li>
                                         <a class="hvr-overline-from-center" href="<?php echo URL; ?>user">Usuários</a>                                    
-                                    </li>
+                                    </li>-->
                                     <li>
                                         <a class="hvr-overline-from-center" href="<?php echo URL; ?>carro">Carros</a>                                    
                                     </li>
@@ -116,6 +116,10 @@
                                 <li>
                                     <a class="hvr-overline-from-center" href="<?php echo URL; ?>admin/logout">Sair</a>    
                                 </li>
+                                <li>
+                                    <a class="hvr-overline-from-center" id="user_link" href="<?php echo URL; ?>user/">Bem Vindo <?php echo Session::get('login');?></a>    
+                                </li>                                                    
+
                             <?php else: ?>                              
                                 <li>
                                     <a  class="hvr-overline-from-center" href="<?php echo URL; ?>login">Login</a>
@@ -166,13 +170,13 @@
 
                             </div>
                                 <?php endif; ?>
+                               
 
 <!-- #########################    fim do formulários de login do Header   ############################################################-->
 
                             <?php endif; ?>
-
+               
                 </div>
-
             </div> 
         </header>
 

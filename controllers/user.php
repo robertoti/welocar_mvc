@@ -5,6 +5,7 @@ class User extends Controller {
     public function __construct() {
         parent::__construct();
         Auth::handleLogin();
+        Auth::handleOwner();
     }
     
     public function index() 
@@ -29,13 +30,13 @@ class User extends Controller {
     public function edit($id) 
     {
         $this->view->user = $this->model->userSingleList($id);
-        $this->view->render('user/edit');
+        $this->view->render('user/edit');       
     }
     
-    public function editSave($id)
+    public function editSave($userid)
     {
         $data = array();
-        $data['id'] = $id;
+        $data['userid'] = $userid;
         $data['login'] = $_POST['login'];
         $data['password'] = $_POST['password'];
         $data['role'] = $_POST['role'];

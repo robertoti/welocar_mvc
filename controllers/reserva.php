@@ -9,9 +9,10 @@ class Reserva extends Controller {
 
     public function index() {
         $this->view->reservaList = $this->model->reservaList();
-        $this->view->carroList = $this->model->carroList();
+        $this->view->carroList = $this->model->carroList();       
+        $this->view->updateStatus = $this->model->updateStatus();       
         $this->view->render('reserva/index');
-   
+        
     }
 
     public function selecionaCarro() {

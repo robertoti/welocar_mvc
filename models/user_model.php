@@ -29,6 +29,7 @@ class User_Model extends Model
     public function editSave($data)
     {
         $postData = array(
+            'userid' => $data['userid'],
             'login' => $data['login'],
             'password' => Hash::create('sha256', $data['password'], HASH_PASSWORD_KEY),
             'role' => $data['role']

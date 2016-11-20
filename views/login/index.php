@@ -31,21 +31,20 @@
                                 <input class="form-control"  type="password" name="password" placeholder="Digite sua senha" />
                             </div>
                         </div>
-                        <div class="form-group"> 
+                        <div class="btn-group-lg"> 
                             <div class="col-sm-4"></div>
+                           
                             <div class="col-sm-2">
-                                <input class="form-control btn btn-success" type="submit" value="Enviar" />                                
+                                <button type="submit" class="btn btn-success form-control">Enviar</button>                                                       
+                                <div class="buttonSpacer"></div>
                             </div>
                             <div class="col-sm-2"> 
-                                <a class=" form-control btn btn-info" href="<?php echo URL ?>cadastro" title="">Cadastre-se</a>                                      
+                                <a class="btn btn-info form-control" href="<?php echo URL ?>cadastro" title="">Cadastre-se</a>                                      
                             </div>
 
                         </div>
 
                         </form>
-
-
-
 
                     </div>
 

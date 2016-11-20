@@ -18,12 +18,12 @@ class Carro_Model extends Model
     
     public function carroList()
     {
-        return $this->db->select('SELECT car_id, categoria, disponivel, placa, km FROM carro ORDER BY car_id;');
+        return $this->db->select('SELECT car_id, categoria, placa, km FROM carro ORDER BY car_id;');
     }
     
     public function carroSingleList($car_id)
     {
-        return $this->db->select('SELECT car_id, categoria, disponivel, placa, km FROM carro WHERE car_id = :car_id', array(':car_id' => $car_id));
+        return $this->db->select('SELECT car_id, categoria, placa, km FROM carro WHERE car_id = :car_id', array(':car_id' => $car_id));
     }
     
     
@@ -32,7 +32,6 @@ class Carro_Model extends Model
     {
         $this->db->insert('carro', array(             
             'categoria' => $data['categoria'],  
-            'disponivel' => $data['disponivel'],  
             'placa' => $data['placa'],
             'km' => $data['km']                
         )); 

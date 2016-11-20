@@ -6,17 +6,38 @@
 
     <div class="container">
         
-    <div class="col-md-12 form-group">
+    <div class="col-md-12 text-center">
 
-        <form method="post" action="<?php echo URL; ?>user/editSave/<?php echo $this->user[0]['userid']; ?>">
-            <label>Login</label><input type="text" name="login" value="<?php echo $this->user[0]['login']; ?>" /><br />
-            <label>Password</label><input type="text" name="password" /><br />
-            <label>Role</label>
-            <select name="role">
-                <option value="admin" <?php if ($this->user[0]['role'] == 'admin') echo 'selected'; ?>>Admin</option>
-                <option value="owner" <?php if ($this->user[0]['role'] == 'owner') echo 'selected'; ?>>Owner</option>
-            </select><br />
-            <label>&nbsp;</label><input type="submit" />
+        <form class="form-horizontal" method="post" action="<?php echo URL; ?>user/editSave/<?php echo $this->user[0]['userid']; ?>">
+            
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Login</label>                
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" name="login" value="<?php echo $this->user[0]['login']; ?>" />                   
+                </div>
+            </div> 
+            
+            <div class="form-group">
+                <label class="col-sm-4 control-label">Senha</label>                
+                <div class="col-sm-4">
+                    <input class="form-control" type="password" name="password"/>
+                </div>
+            </div> 
+            
+            
+            
+            <div class="form-group">
+                    <label class="col-sm-4 control-label">Direitos</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="role">
+                                <option value="default" <?php if ($this->user[0]['role'] == 'default') echo 'selected'; ?>>Cliente</option>
+                                <option value="admin" <?php if ($this->user[0]['role'] == 'admin') echo 'selected'; ?>>Funcionário</option>
+                            </select>
+                        </div>
+            </div>
+            <button  class="btn btn-success btn-lg" type="submit" >Alterar Usuário</button>
+           
+            
         </form>
     </div>
     </div>

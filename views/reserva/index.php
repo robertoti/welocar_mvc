@@ -83,19 +83,18 @@
         <h2 class="title">Reservas ativas</h2>
         <hr id="hr-cat"/>
     </div>
-
-
-    <div class="container">
+    <div class="container table-overflow">
         <table class="table table-bordered">
-            <tr>
-                <td>Categoria</td>
-<!--                <td>userid</td>-->
-                <td>Data de realização da reserva</td>
-                <td>Retirada</td>
-                <td>Entrega</td>
-                <td>Horário de retirada</td>
-                <td>Status</td>
-                <td>Opções</td>
+            <tr class="text-uppercase">
+                <th class="text-center">Categoria</th>
+                <?php if (Session::get('role') != 'default'): ?>
+                <th class="text-center">Nome do Cliente</th>
+                <?php endif;?>
+                <th class="text-center">Data da compra</th>
+                <th class="text-center">Retirada</th>
+                <th class="text-center">Entrega</th>
+                <th class="text-center">Status</th>
+                <th class="text-center"><i class="fa fa-cog fa-fw" aria-hidden="true" title="Opções"></i></th>
             </tr>
 
             <?php
@@ -104,16 +103,23 @@
             
             foreach ($this->reservaList as $key => $value) {
                 echo '<tr>';
-                echo '<td>' . $value['categoria'] . '</td>';
-//                echo '<td>' . $value['userid'] . '</td>';
-                echo '<td>' .  Helpers::dateTimeToView($value['date_added'])  . '</td>';
-                echo '<td>' . Helpers::dateToView($value['date_inicio']) . '</td>';
-                echo '<td>' . Helpers::dateToView($value['date_fim']) . '</td>';
-                echo '<td>' . $value['hora_inicio'] . '</td>';
-                echo '<td>' . $value['status'] . '</td>';
-                echo '<td>
-                <a href="' . URL . 'reserva/edit/' . $value['reservaid'] . '"><button class="btn btn-primary">Editar</button></a> 
-                <a href="' . URL . 'reserva/delete/' . $value['reservaid'] . '"><button class="delete btn btn-danger">Deletar</button></a></td>';
+                echo '<td class="text-center">' . $value['categoria'] . '</td>';
+                if (Session::get('role') != 'default'):
+                    echo '<td>' . $value['login'] . '</td>';
+                endif;
+                echo '<td class="text-center">' .  Helpers::dateTimeToView($value['date_added'])  . '</td>';
+                echo '<td>dia:&nbsp;&nbsp;&nbsp;&nbsp; ' . Helpers::dateToView($value['date_inicio']);
+                echo '<br>hora:&nbsp;&nbsp;&nbsp;' .$value['hora_inicio'] . '</td>';
+                echo '<td class="text-center">' . Helpers::dateToView($value['date_fim']) . '</td>';
+                echo '<td class="text-center">' . $value['status'] . '</td>';
+                echo '<td class="text-center">
+                <a href="' . URL . 'reserva/edit/' . $value['reservaid'] . '">
+                    <i class="fa fa-edit fa-fw" aria-hidden="true" title="Editar"></i>
+                </a>                 
+                <a href="' . URL . 'reserva/delete/' . $value['reservaid'] . '">
+                    <i class="fa fa-trash fa-fw" aria-hidden="true" title="Deletar"></i>
+                </a>
+                </td>';
                 echo '</tr>';
             }
             
@@ -124,57 +130,6 @@
     </div>
 
 </section>
-
-
-
-<?php if (Session::get('role') != 'default'): ?>
-
-    <section>
-
-        <div class="container text-center">
-            <h2 class="title">Veículos</h2>
-            <hr id="hr-cat"/>
-        </div>
-
-        <div class="container">
-            <table class="table table-bordered">
-                <tr>
-                    <td>Carro id</td>
-                    <td>Categoria</td>
-                    <td>Disponível</td>
-                    <td>Placa</td>
-                    <td>Odômetro</td>
-                    <td>Opções</td>                    
-                </tr>
-                <?php
-                foreach ($this->carroList as $key1 => $value1) {
-                    echo '<tr>';
-                    echo '<td>' . $value1['car_id'] . '</td>';
-                    echo '<td>' . $value1['categoria'] . '</td>';
-                    echo '<td>' . $value1['disponivel'] . '</td>';
-                    echo '<td>' . $value1['placa'] . '</td>';
-                    echo '<td>' . $value1['km'] . '</td>';
-
-                    echo '<td>
-                <a href="' . URL . 'carro/edit/' . $value1['car_id'] . '"><button class="btn btn-primary">Editar</button></a> 
-                <a href="' . URL . 'carro/delete/' . $value1['car_id'] . '"><button class="delete btn btn-danger">Deletar</button></a></td>';
-                    echo '</tr>';
-                }
-                
-                
-              
-                ?>   
-
-            </table>
-
-        </div>
-
-    </section>
-
-
-
-<?php endif; ?>
-
 
 <script>
 
