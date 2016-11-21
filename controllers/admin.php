@@ -17,7 +17,7 @@ class Admin extends Controller {
     function logout()
     {
         Session::destroy();
-        header('location: ' . URL .  'login');
+        header('location: ' . URL);
         exit;
     }
     

@@ -95,7 +95,7 @@
                 <th class="text-center">Entrega</th>
                 <th class="text-center">Status</th>
                 <th class="text-center"><i class="fa fa-cog fa-fw" aria-hidden="true" title="Opções"></i></th>
-            </tr>
+            </tr>            
 
             <?php
             ?>
@@ -108,8 +108,8 @@
                     echo '<td>' . $value['login'] . '</td>';
                 endif;
                 echo '<td class="text-center">' .  Helpers::dateTimeToView($value['date_added'])  . '</td>';
-                echo '<td>dia:&nbsp;&nbsp;&nbsp;&nbsp; ' . Helpers::dateToView($value['date_inicio']);
-                echo '<br>hora:&nbsp;&nbsp;&nbsp;' .$value['hora_inicio'] . '</td>';
+                echo '<td><span class="text-uppercase text-info">dia:&nbsp;&nbsp;&nbsp;&nbsp;</span> ' . Helpers::dateToView($value['date_inicio']);
+                echo '<br><span class="text-uppercase text-info">hora:&nbsp;&nbsp;&nbsp;</span>' .$value['hora_inicio'] . '</td>';
                 echo '<td class="text-center">' . Helpers::dateToView($value['date_fim']) . '</td>';
                 echo '<td class="text-center">' . $value['status'] . '</td>';
                 echo '<td class="text-center">

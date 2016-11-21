@@ -89,6 +89,13 @@ header a:hover {
     right: -500%;
 }
 
+header input{
+    border-radius: 0px!important;
+}
+header form{
+    margin-top: -6px!important;   
+}
+
 input#control-nav {
     visibility: hidden;
     position: absolute;
@@ -110,6 +117,11 @@ section:after {
     clear: both;
 }
 
+@media screen and (min-width: 767px){
+    header form {
+        margin-top: -6px!important;
+    }
+}
 
 @media screen and (max-width: 800px) {
     #user_link {
@@ -127,16 +139,19 @@ section:after {
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (min-width: 991px) {
     #user_link {
         right: -300%;
+    }    
+    header form {
+        margin-top: -10px!important;
     }
 }
 
 @media screen and (max-width: 1280px) {
     #user_link {
         right: -380%;
-    }
+    }    
 }
 
 @media screen and (max-width: 1024px) {
@@ -152,6 +167,9 @@ section:after {
     }
     header div#msg-logo{
         text-align: center;
+    } 
+    header form {
+        margin-top: -41px!important;
     }
 }
 
@@ -257,7 +275,15 @@ section:after {
         text-align: center;
         padding-bottom: 11px;
     }
-
+    .float-r{        
+        float: none;
+    }
+    header form{
+        margin-top: 10px!important;   
+    }
+    header button{
+        width: 100%;
+    }
 } 
 
 @media screen and (max-width: 480px) {
@@ -279,6 +305,8 @@ section:after {
     }
     header div#msg-logo{
         text-align: center;
+        margin-top: 22px;
+        font-size: 1.4em;
     }
     header div.pull-right {
         position: relative;
@@ -294,6 +322,13 @@ section:after {
     }
     #user_link {
         right: 0;
+    }
+    .float-r{
+        margin-top: 15px;
+        float: none;
+    }
+    #login{
+        
     }
 }
 
@@ -411,4 +446,14 @@ div#content section{
     -ms-flex-positive: 1;
     flex-grow: 1;
     min-height: 1.3125rem;
+}
+header li button{
+    background: transparent;
+    border: none;
+    margin-left: -40px;
+    padding-top: 12px;
+      
+}
+header li fa{
+    
 }
