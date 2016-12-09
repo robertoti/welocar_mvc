@@ -117,7 +117,16 @@
                                     <a class="hvr-overline-from-center" href="<?php echo URL; ?>admin/logout">Sair</a>    
                                 </li>
                                 <li>
-                                    <a class="hvr-overline-from-center" href="<?php echo URL; ?>user/">Bem vindo <?php echo Session::get('login'); ?></a>    
+                                    <a class="hvr-overline-from-center" href="<?php echo URL; ?>user/">
+                                        Bem vindo 
+                                        <?php  if (Session::get('role') == 'owner'):
+                                                    echo 'Sr.';
+                                                elseif(Session::get('role') == 'admin'):
+                                                    echo 'Colaborador';
+                                                endif;
+                                        ?>
+                                        <?php echo Session::get('login'); ?>
+                                    </a>                                    
                                 </li>                                                    
 
                             <?php else: ?>                              

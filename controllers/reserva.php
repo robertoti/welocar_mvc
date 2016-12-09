@@ -4,18 +4,14 @@ class Reserva extends Controller {
 
     public function __construct() {
         parent::__construct();
-        Auth::handleLogin();
+        Auth::handleLogin();        
     }
 
     public function index() {
         $this->view->reservaList = $this->model->reservaList();
-        $this->view->carroList = $this->model->carroList();       
-        $this->view->updateStatus = $this->model->updateStatus();       
+        $this->view->carroList = $this->model->carroList();                      
+        $this->view->updateStatus = $this->model->updateStatus();               
         $this->view->render('reserva/index');
-        
-    }
-
-    public function selecionaCarro() {
         
     }
 
@@ -28,13 +24,11 @@ class Reserva extends Controller {
         $data['date_fim'] = $this->model->dateToDB($_POST['date_fim']);
         $data['hora_inicio'] = $this->model->dateToDB($_POST['hora_inicio']);
         $data['status'] = $_POST['status'];
-
-        // @TODO: Do your error checking!
-
+            
         $this->model->create($data);
         header('location: ' . URL . 'reserva');
     }
-
+  
     public function edit($reservaid) {
         $this->view->reserva = $this->model->reservaSingleList($reservaid);
 

@@ -36,8 +36,16 @@ class Reserva_Model extends Model {
     }
 
     public function create($data) {
+        
+        $sth = $this->selecionaCarro($data['categoria'], $data['date_inicio'], $data['date_fim']);
+        
+        if(!sth){ // retorna que não tem veículo disponível
+            mysql_error();
+        }
+        
         $this->db->insert('reserva', array(
-            'userid' => $_SESSION['userid'],
+            'userid' => $_SESSION['userid'],            
+            'car_id' => $sth[0]['car_id'],
             'categoria' => $data['categoria'],
             'date_added' => $data['date_added'],
             'date_inicio' => $data['date_inicio'],
@@ -45,6 +53,9 @@ class Reserva_Model extends Model {
             'hora_inicio' => $data['hora_inicio'],            
             'status' => $data['status']
         ));
+        
+        var_dump($data);        
+        
     }
 
     public function editSave($data) {
@@ -67,9 +78,34 @@ class Reserva_Model extends Model {
         $this->db->delete('reserva', "reservaid = '$reservaid'");
     }
 
-    public function selecionaCarro($categoria) {
-        $disponivel = 0;
-        return $this->db->select('SELECT car_id FROM carro WHERE disponivel = :disponivel AND car_id = :categoria', array(':categoria' => $categoria));
+    public function selecionaCarro($categoria, $date_inicio, $date_fim) {
+        $query = '
+            SELECT c.car_id
+            FROM carro AS c
+            WHERE c.categoria = :categoria
+            AND NOT EXISTS(
+                SELECT *
+                FROM reserva AS r
+                WHERE r.car_id = c.car_id
+                AND (
+                    :date_inicio BETWEEN r.date_inicio AND r.date_fim
+                    OR :date_fim BETWEEN r.date_inicio AND r.date_fim
+                )
+            )
+            LIMIT 1
+        ';
+        $dados = array(
+            ':categoria' => $categoria,
+            ':date_inicio' => $date_inicio,
+            ':date_fim' => $date_fim
+        );
+        $pegar = $this->db->select($query, $dados);
+//        var_dump($pegar); exit;;
+        if(empty($pegar)) {
+            header("Location: /nao-foi-possivel");
+            exit;
+        }
+        return $pegar;
     }
 
     public function carroList() {

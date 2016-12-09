@@ -13,13 +13,13 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Login</label>                    
                     <div class="col-sm-4">                                        
-                        <input class="form-control" type="text" name="login" />
+                        <input class="form-control" type="text" name="login" required />
                     </div>                    
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Senha</label>
                     <div class="col-sm-4">
-                        <input class="form-control" type="password" name="password" />
+                        <input class="form-control" type="password" name="password" required/>
                     </div>                        
                 </div>
                 <div class="form-group">
