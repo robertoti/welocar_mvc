@@ -102,7 +102,7 @@ class Reserva_Model extends Model {
         $pegar = $this->db->select($query, $dados);
 //        var_dump($pegar); exit;;
         if(empty($pegar)) {
-            header("Location: /nao-foi-possivel");
+            header("Location: /reserva?erro");
             exit;
         }
         return $pegar;

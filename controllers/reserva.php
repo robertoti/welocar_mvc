@@ -26,7 +26,7 @@ class Reserva extends Controller {
         $data['status'] = $_POST['status'];
             
         $this->model->create($data);
-        header('location: ' . URL . 'reserva');
+        header('location: ' . URL . 'reserva?success');
     }
   
     public function edit($reservaid) {

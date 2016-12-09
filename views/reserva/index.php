@@ -17,6 +17,18 @@
                 <form class="form-horizontal" method="post" action="<?php echo URL; ?>reserva/create">
 
                     <div class="form-group">
+                        <?php if ((isset($_GET['erro']))): ?>                  
+                        <div class="alert alert-danger fade in">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Reserva não realizada!</strong> Não há veículos disponíveis dessa categoria para essa data.
+                        </div>
+                        <?php endif; ?>
+                        <?php if ((isset($_GET['success']))): ?>                  
+                        <div class="alert alert-success fade in">
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>Reserva realizada com sucesso!</strong> Verifique abaixo suas reservas ativas.
+                        </div>
+                        <?php endif; ?>
 
                         <label class="col-sm-4 control-label">Categoria</label>
 
@@ -39,7 +51,7 @@
                         </div>
 
                     </div>
-                    
+
                     <div class="form-group">
 
                         <label class="col-sm-4 control-label">Data da devolução</label>
@@ -57,10 +69,10 @@
                         <label class="col-sm-4 control-label">Horário da retirada</label>
                         <div class="col-sm-4">
                             <input id="time" type="text" required class="form-control"  name="hora_inicio" />
-                        </div>
+                        </div>                       
 
                     </div>
-                    
+
                     <input type="hidden" value="<?php echo date('Y-m-d h:m') ?>" name="date_added" />
                     <input type="hidden" value="ativa" name="status" />
 
@@ -88,8 +100,8 @@
             <tr class="text-uppercase">
                 <th class="text-center">Categoria</th>
                 <?php if (Session::get('role') != 'default'): ?>
-                <th class="text-center">Nome do Cliente</th>
-                <?php endif;?>
+                    <th class="text-center">Nome do Cliente</th>
+                <?php endif; ?>
                 <th class="text-center">Data da compra</th>
                 <th class="text-center">Retirada</th>
                 <th class="text-center">Entrega</th>
@@ -100,16 +112,15 @@
             <?php
             ?>
             <?php
-            
             foreach ($this->reservaList as $key => $value) {
                 echo '<tr>';
                 echo '<td class="text-center">' . $value['categoria'] . '</td>';
                 if (Session::get('role') != 'default'):
                     echo '<td>' . $value['login'] . '</td>';
                 endif;
-                echo '<td class="text-center">' .  Helpers::dateTimeToView($value['date_added'])  . '</td>';
+                echo '<td class="text-center">' . Helpers::dateTimeToView($value['date_added']) . '</td>';
                 echo '<td><span class="text-uppercase text-info">dia:&nbsp;&nbsp;&nbsp;&nbsp;</span> ' . Helpers::dateToView($value['date_inicio']);
-                echo '<br><span class="text-uppercase text-info">hora:&nbsp;&nbsp;&nbsp;</span>' .$value['hora_inicio'] . '</td>';
+                echo '<br><span class="text-uppercase text-info">hora:&nbsp;&nbsp;&nbsp;</span>' . $value['hora_inicio'] . '</td>';
                 echo '<td class="text-center">' . Helpers::dateToView($value['date_fim']) . '</td>';
                 echo '<td class="text-center">' . $value['status'] . '</td>';
                 echo '<td class="text-center">
@@ -122,7 +133,6 @@
                 </td>';
                 echo '</tr>';
             }
-            
             ?>   
 
         </table>
@@ -161,11 +171,12 @@
         checkout.hide();
     }).data('datepicker');
 
-    $(function() {
+    $(function () {
 
-        $('.delete').click(function(e) {
+        $('.delete').click(function (e) {
             var c = confirm("Tem certeza que deseja deletar?");
-            if (c == false) return false;
+            if (c == false)
+                return false;
 
         });
 
@@ -173,49 +184,49 @@
 
 </script>
 <script type="text/javascript">
-		$(document).ready(function()
-		{
-			$('#date').bootstrapMaterialDatePicker
-			({
-				time: false,
-				clearButton: true
-			});
+    $(document).ready(function ()
+    {
+        $('#date').bootstrapMaterialDatePicker
+                ({
+                    time: false,
+                    clearButton: true
+                });
 
-			$('#time').bootstrapMaterialDatePicker
-			({
-				date: false,
-				shortTime: false,
-				format: 'HH:mm'
-			});
+        $('#time').bootstrapMaterialDatePicker
+                ({
+                    date: false,
+                    shortTime: false,
+                    format: 'HH:mm'
+                });
 
-			$('#date-format').bootstrapMaterialDatePicker
-			({
-				format: 'dddd DD MMMM YYYY - HH:mm'
-			});
-			$('#date-fr').bootstrapMaterialDatePicker
-			({
-				format: 'DD/MM/YYYY HH:mm',
-				lang: 'fr',
-				weekStart: 1, 
-				cancelText : 'ANNULER',
-				nowButton : true,
-				switchOnClick : true
-			});
+        $('#date-format').bootstrapMaterialDatePicker
+                ({
+                    format: 'dddd DD MMMM YYYY - HH:mm'
+                });
+        $('#date-fr').bootstrapMaterialDatePicker
+                ({
+                    format: 'DD/MM/YYYY HH:mm',
+                    lang: 'fr',
+                    weekStart: 1,
+                    cancelText: 'ANNULER',
+                    nowButton: true,
+                    switchOnClick: true
+                });
 
-			$('#date-end').bootstrapMaterialDatePicker
-			({
-				weekStart: 0, format: 'DD/MM/YYYY HH:mm'
-			});
-			$('#date-start').bootstrapMaterialDatePicker
-			({
-				weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
-			}).on('change', function(e, date)
-			{
-				$('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
-			});
+        $('#date-end').bootstrapMaterialDatePicker
+                ({
+                    weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+                });
+        $('#date-start').bootstrapMaterialDatePicker
+                ({
+                    weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime: true
+                }).on('change', function (e, date)
+        {
+            $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+        });
 
-			$('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+        $('#min-date').bootstrapMaterialDatePicker({format: 'DD/MM/YYYY HH:mm', minDate: new Date()});
 
-			$.material.init()
-		});
-		</script>
+        $.material.init()
+    });
+</script>
